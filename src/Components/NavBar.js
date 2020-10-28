@@ -34,7 +34,6 @@ const ImgLogo = styled.img`
 const Login = styled.button`
     background-color: transparent;
     border: none;
-    cursor: pointer;
     color: white;
     font-size: 16px;
     line-height: 19px;
@@ -56,8 +55,8 @@ export const NavBar = () => (
 
 			<Login>
 				<LoginImg src={loginImg} alt="login" />
-	      войти
-	  	</Login>
+				<p>войти</p>
+			</Login>
 		</NavbarHeader>
 	</>
 );
