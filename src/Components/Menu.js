@@ -20,17 +20,21 @@ const SectionMenu = styled.section`
 `;
 
 
-export const Menu = () => (
+export const Menu = ({ setOpenItem }) => (
 	<MenuStyled>
 		<MainImg />
 		<SectionMenu>
 			<H2>Бургеры</H2>
-			<ListItem itemList={dbMenu.burger} />
+			<ListItem itemList={dbMenu.burger}
+				setOpenItem={setOpenItem}
+			/>
 		</SectionMenu>
 
 		<SectionMenu>
 			<H2>Закуски / Напитки</H2>
-			<ListItem itemList={dbMenu.other} />
+			<ListItem itemList={dbMenu.other}
+				setOpenItem={setOpenItem}
+			/>
 		</SectionMenu>
 	</MenuStyled>
 );
