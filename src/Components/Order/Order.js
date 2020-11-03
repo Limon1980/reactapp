@@ -2,7 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { ButtonCheckout } from '../Styled/ButtonCheckout';
 import { OrderListItem } from './OrderListItem';
-import { totalPriceItems } from '../Modal/ModalItem';
+import { totalPriceItems } from '../function/secondaryfunction';
+import { formatCurrencey } from '../function/secondaryfunction';
 
 const OrderStyled = styled.section`
 
@@ -49,9 +50,10 @@ const EmptyList = styled.p`
 
 export const Order = ({ orders }) => {
 
-	const total = orders.reduce((result, order) => 
-	totalPriceItems(order) + result, 0);
-
+	const total = orders.reduce((result, order) =>
+		totalPriceItems(order) + result, 0);
+	const totalCounter = orders.reduce((result, order) =>
+		order.count + result, 0);
 
 	return (
 		<>
@@ -60,21 +62,20 @@ export const Order = ({ orders }) => {
 					ВАШ ЗАКАЗ
 				</OrderTitle>
 				<OrderContent>
-				{orders.length ?
-					<OrderList>
-						{orders.map(order => <OrderListItem order={order}/>)}
-					</OrderList> :
-					<EmptyList>Список заказов пуст</EmptyList>}
+					{orders.length ?
+						<OrderList>
+							{orders.map(order => <OrderListItem order={order} />)}
+						</OrderList> :
+						<EmptyList>Список заказов пуст</EmptyList>}
 				</OrderContent>
 				<Total>
 					<span>
 						Итого
 					</span>
 					<span>
-					5
+						{totalCounter}
 					</span>
-				<TotalPrice>{total.toLocaleString('ru-RU',
-		{ style: 'currency', currency: 'RUB'})}</TotalPrice>
+					<TotalPrice>{formatCurrencey(total)}</TotalPrice>
 				</Total>
 				<ButtonCheckout>Оформить</ButtonCheckout>
 			</OrderStyled>
