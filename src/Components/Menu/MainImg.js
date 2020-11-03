@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import img from '../image/banner.png';
+import img from '../../image/banner.png';
 
 const Img = styled.div`
     width: 100%;
