@@ -11,7 +11,6 @@ export function useToppings(openItem) {
 		openItem.toppings ?
 			getTopping(openItem.toppings) : [];
 	const [toppings, setToppings] = useState(readyTopping);
-
 	const checkToppings = index => {
 		setToppings(toppings.map((item, i) => {
 			const newItem = { ...item };

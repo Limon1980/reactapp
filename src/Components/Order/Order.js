@@ -56,6 +56,7 @@ export const Order = ({ orders, setOrders, setOpenItem }) => {
 		setOrders(newOrders);
 	}
 
+
 	const total = orders.reduce((result, order) =>
 		totalPriceItems(order) + result, 0);
 	const totalCounter = orders.reduce((result, order) =>

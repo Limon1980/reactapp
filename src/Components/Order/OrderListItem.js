@@ -43,9 +43,8 @@ export const OrderListItem = ({ order, index, deleteItem, setOpenItem }) => {
 	const topping = order.topping.filter(item => item.checked)
 		.map(item => item.name)
 		.join(', ');
-
 	return (
-		<OrderItemStyled onClick={() => setOpenItem({ ...order, index })}>
+		<OrderItemStyled onClick={(event) => { if (event.target.localName !== 'button') setOpenItem({ ...order, index }) }}>
 			<ItemName>{order.name} {order.choice}</ItemName>
 			<span>{order.count}</span>
 			<ItemPrice>{formatCurrencey(totalPriceItems(order))}</ItemPrice>

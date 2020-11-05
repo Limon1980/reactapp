@@ -8,3 +8,7 @@ export const totalPriceItems = order => {
 
 export const formatCurrencey = value => value.toLocaleString('ru-RU',
 	{ style: 'currency', currency: 'RUB' });
+
+export const buttonText = (isEdit) => {
+	return isEdit ? 'Редактировать' : 'Добавить';
+}
