@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import logoImg from '../../image/logo.svg';
 import loginImg from '../../image/sign.svg';
+
 const NavbarHeader = styled.header`
 		position: fixed;
 		top: 0;
@@ -45,7 +46,24 @@ const LoginImg = styled.img`
     margin-bottom: 3px;
 `;
 
-export const NavBar = () => (
+const User = styled.div`
+	display: flex;
+	align-items: center;
+	text-align: center;
+`;
+
+const LogOut = styled.span`
+	font-size: 20px;
+	font-weight: 700px;
+	cursor: pointer;
+	margin-right: 30px;	
+`;
+
+const Figure = styled.figure`
+	margin: 0 30px;
+`;
+
+export const NavBar = ({ authentication, logIn, logOut }) => (
 	<>
 		<NavbarHeader >
 			<Logo>
@@ -53,10 +71,23 @@ export const NavBar = () => (
 				<H1>MRDonald's</H1>
 			</Logo>
 
-			<Login>
-				<LoginImg src={loginImg} alt="login" />
-				<p>войти</p>
-			</Login>
+			{authentication ?
+				<User>
+					<Figure>
+						<img src={loginImg} alt={authentication.displayName} />
+						<figcaption>
+							{authentication.displayName}
+						</figcaption>
+					</Figure>
+					<LogOut title="выйти" onClick={logOut}>X</LogOut>
+				</User> :
+				<Login onClick={logIn}>
+					<figure>
+						<img src={loginImg} alt="login" />
+						<figcaption>войти</figcaption>
+					</figure>
+
+				</Login>}
 		</NavbarHeader>
 	</>
 );
