@@ -1,5 +1,6 @@
 import React from 'react';
 import firebase from 'firebase/app';
+import 'firebase/database';
 import 'firebase/auth';
 import { NavBar } from './Components/NavBar/NavBar';
 import { Menu } from './Components/Menu/Menu';
@@ -32,7 +33,12 @@ function App() {
 		<>
 			<GlobalStyle />
 			<NavBar {...auth} />
-			<Order {...orders} {...openItem} {...auth} />
+			<Order
+				{...orders}
+				{...openItem}
+				{...auth}
+				firebaseDatabase={firebase.database}
+			/>
 			<Menu {...openItem} />
 			{ openItem.openItem && <ModalItem {...openItem} {...orders} />}
 		</>

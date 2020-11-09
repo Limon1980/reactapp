@@ -1,3 +1,5 @@
+import { findByAltText } from "@testing-library/react";
+
 export const totalPriceItems = order => {
 
 	const countTopping = order.topping && order.topping.filter(item => item.checked).length;
@@ -6,5 +8,15 @@ export const totalPriceItems = order => {
 };
 
 
+
 export const formatCurrencey = value => value.toLocaleString('ru-RU',
 	{ style: 'currency', currency: 'RUB' });
+
+export const projection = rules => {
+	const keys = Object.keys(rules);
+	return obj => keys.reduce((newObj, key) => {
+		newObj[key] = rules[key].reduce((val, fn, i) => (i ? fn(val) : obj[fn]), null)
+		return newObj;
+	}, {})
+}
+
