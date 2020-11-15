@@ -71,6 +71,8 @@ export const Order = ({ orders, setOrders,
 			order: newOrder
 		});
 
+		setOrders([]);
+
 	}
 	const deleteItem = index => {
 		const newOrders = orders.filter((item, i) =>

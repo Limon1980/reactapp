@@ -39,12 +39,6 @@ const Login = styled.button`
     font-size: 16px;
     line-height: 19px;
 `;
-const LoginImg = styled.img`
-    width: 32px;
-    display: block;
-    margin: auto;
-    margin-bottom: 3px;
-`;
 
 const User = styled.div`
 	display: flex;

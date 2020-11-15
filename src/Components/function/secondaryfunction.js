@@ -1,5 +1,3 @@
-import { findByAltText } from "@testing-library/react";
-
 export const totalPriceItems = order => {
 
 	const countTopping = order.topping && order.topping.filter(item => item.checked).length;
