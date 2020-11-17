@@ -27,9 +27,9 @@ const sendOrderEmail = data => {
 					} руб.</li>
                                 ${choice !== 'no choice'
 						? `
-                                <ul >
-                                    <li style="font-size: 14px; color: #000;">${choice}</li>
-                                </ul>`
+                              <ul >
+                                  <li style="font-size: 14px; color: #000;">${choice}</li>
+                              </ul>`
 						: ''
 					}
                                 ${topping && topping !== 'no toppings'
