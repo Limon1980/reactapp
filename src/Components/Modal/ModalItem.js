@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { Context } from '../function/context';
 import styled from 'styled-components';
 import { ButtonCheckout } from '../Styled/ButtonCheckout';
 import { CountItem } from './CountItem';
@@ -55,8 +56,12 @@ const HeaderContent = styled.div`
 	font-family: 'Pacifico', cursive;
 `;
 
-export const ModalItem = ({ openItem, setOpenItem, orders, setOrders }) => {
+export const ModalItem = () => {
 
+	const {
+		orders: { orders, setOrders },
+		openItem: { openItem, setOpenItem }
+	} = useContext(Context);
 	const counter = useCount(openItem.count);
 	const toppings = useToppings(openItem);
 	const choices = useChoices(openItem);

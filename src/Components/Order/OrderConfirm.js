@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { Context } from '../function/context';
 import styled from 'styled-components';
 import { Overlay } from '../Modal/ModalItem';
 import { OrderTitle, Total, TotalPrice } from './Order';
@@ -38,12 +39,15 @@ const sendOrder = (dataBase, orders, authentication) => {
 
 }
 
-export const OrderConfirm = ({
-	orders, setOrders,
-	authentication,
-	setOpenOrderConfirm,
-	firebaseDatabase
-}) => {
+export const OrderConfirm = () => {
+
+	const {
+		orders: { orders, setOrders },
+		auth: { authentication },
+		orderConfirm: { setOpenOrderConfirm },
+		firebaseDatabase,
+	} = useContext(Context);
+
 	const dataBase = firebaseDatabase();
 	const total = orders.reduce((result, order) =>
 		totalPriceItems(order) + result, 0);

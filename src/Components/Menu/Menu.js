@@ -1,9 +1,8 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { ListItem } from './ListItem';
 import { MainImg } from './MainImg';
 import { useFetch } from '../Hooks/useFetch';
-import { Context } from '../function/context';
 
 const MenuStyled = styled.main`
 	background-color: #ccc;
@@ -24,7 +23,6 @@ const SectionMenu = styled.section`
 
 export const Menu = () => {
 
-	const { openItem: { setOpenItem } } = useContext(Context);
 	const res = useFetch();
 	const dbMenu = res.response;
 
@@ -36,14 +34,12 @@ export const Menu = () => {
 					<SectionMenu>
 						<H2>Бургеры</H2>
 						<ListItem itemList={dbMenu.burger}
-							setOpenItem={setOpenItem}
 						/>
 					</SectionMenu>
 
 					<SectionMenu>
 						<H2>Закуски / Напитки</H2>
 						<ListItem itemList={dbMenu.other}
-							setOpenItem={setOpenItem}
 						/>
 					</SectionMenu>
 				</> : res.error ?

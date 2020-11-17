@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { ButtonCheckout } from '../Styled/ButtonCheckout';
 import { OrderListItem } from './OrderListItem';
-import { totalPriceItems } from '../function/secondaryfunction';
-import { formatCurrencey } from '../function/secondaryfunction';
+import { totalPriceItems, formatCurrencey } from '../function/secondaryfunction';
+import { Context } from '../function/context';
 
 const OrderStyled = styled.section`
 
@@ -51,15 +51,13 @@ const EmptyList = styled.p`
 
 
 export const Order = ({
-	orders,
-	setOrders,
-	setOpenItem,
-	authentication,
-	logIn,
-	setOpenOrderConfirm
 }) => {
 
-
+	const {
+		auth: { authentication, logIn },
+		orders: { orders, setOrders },
+		orderConfirm: { setOpenOrderConfirm },
+	} = useContext(Context);
 
 
 	const deleteItem = index => {
@@ -89,21 +87,23 @@ export const Order = ({
 								order={order}
 								deleteItem={deleteItem}
 								index={index}
-								setOpenItem={setOpenItem}
 							/>)}
 						</OrderList> :
 						<EmptyList>Список заказов пуст</EmptyList>}
 				</OrderContent>
-				<Total>
-					<span>
-						Итого
-					</span>
-					<span>
-						{totalCounter}
-					</span>
-					<TotalPrice>{formatCurrencey(total)}</TotalPrice>
-				</Total>
-				<ButtonCheckout onClick={() => authentication ? setOpenOrderConfirm(true) : logIn()}>Оформить</ButtonCheckout>
+				{orders.length ?
+					<>
+						<Total>
+							<span>Итого</span>
+							<span>{totalCounter}</span>
+							<TotalPrice>{formatCurrencey(total)}</TotalPrice>
+						</Total>
+						<ButtonCheckout onClick={() => authentication ?
+							setOpenOrderConfirm(true) :
+							logIn()}>Оформить</ButtonCheckout>
+					</> :
+					null
+				}
 			</OrderStyled>
 		</>
 	)

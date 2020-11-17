@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { Context } from '../function/context';
 import styled from 'styled-components';
 import { formatCurrencey } from '../function/secondaryfunction';
 
@@ -41,18 +42,22 @@ const Item = styled.li`
 	}
 `;
 
-export const ListItem = ({ itemList, setOpenItem }) => (
-	<List>
-		{itemList.map(item => (
-			<Item
-				key={item.id}
-				img={item.img}
-				onClick={() => setOpenItem(item)}>
-				<p>{item.name}</p>
-				<p>{formatCurrencey(item.price)}</p>
-			</Item>
-		))}
+export const ListItem = ({ itemList }) => {
 
-	</List >
+	const { openItem: { setOpenItem } } = useContext(Context);
+	return (
+		<List>
+			{itemList.map(item => (
+				<Item
+					key={item.id}
+					img={item.img}
+					onClick={() => setOpenItem(item)}>
+					<p>{item.name}</p>
+					<p>{formatCurrencey(item.price)}</p>
+				</Item>
+			))}
 
-);
+		</List >
+	)
+
+};

@@ -3,7 +3,8 @@ import styled from 'styled-components';
 import trashImage from '../../image/trash.svg';
 import { totalPriceItems } from '../function/secondaryfunction';
 import { formatCurrencey } from '../function/secondaryfunction';
-import { useRef } from 'react';
+import { useRef, useContext } from 'react';
+import { Context } from '../function/context';
 
 const OrderItemStyled = styled.li`
 	display: flex;
@@ -41,7 +42,10 @@ const Toppings = styled.div`
 	width: 100%;
 `;
 
-export const OrderListItem = ({ order, index, deleteItem, setOpenItem }) => {
+export const OrderListItem = ({ order, index, deleteItem }) => {
+
+	const { openItem: { setOpenItem } } = useContext(Context);
+
 	const topping = order.topping.filter(item => item.checked)
 		.map(item => item.name)
 		.join(', ');
